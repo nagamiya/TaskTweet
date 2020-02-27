@@ -14,6 +14,7 @@
 		B1DAC43A2407C9D10062FDBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1DAC4382407C9D10062FDBF /* LaunchScreen.storyboard */; };
 		B1DAC4452407C9D10062FDBF /* TaskTweetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DAC4442407C9D10062FDBF /* TaskTweetTests.swift */; };
 		B1DAC4502407C9D10062FDBF /* TaskTweetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DAC44F2407C9D10062FDBF /* TaskTweetUITests.swift */; };
+		B1DAC45E2407FABC0062FDBF /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DAC45D2407FABC0062FDBF /* UIColorHex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		B1DAC44B2407C9D10062FDBF /* TaskTweetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskTweetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1DAC44F2407C9D10062FDBF /* TaskTweetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTweetUITests.swift; sourceTree = "<group>"; };
 		B1DAC4512407C9D10062FDBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1DAC45D2407FABC0062FDBF /* UIColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				B1DAC42F2407C9CE0062FDBF /* AppDelegate.swift */,
 				B1DAC4312407C9CE0062FDBF /* ViewController.swift */,
+				B1DAC45D2407FABC0062FDBF /* UIColorHex.swift */,
 				B1DAC4332407C9CE0062FDBF /* Main.storyboard */,
 				B1DAC4362407C9D10062FDBF /* Assets.xcassets */,
 				B1DAC4382407C9D10062FDBF /* LaunchScreen.storyboard */,
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1DAC45E2407FABC0062FDBF /* UIColorHex.swift in Sources */,
 				B1DAC4322407C9CE0062FDBF /* ViewController.swift in Sources */,
 				B1DAC4302407C9CE0062FDBF /* AppDelegate.swift in Sources */,
 			);
