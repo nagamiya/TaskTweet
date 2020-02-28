@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     //var tweetButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: Selector(("tapTweetButton")))
     
     
@@ -35,27 +36,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //self.navigationItem.setRightBarButtonItems([tweetButton], animated: true)
-
-        
-        score = userDefaults.integer(forKey: "savescore")
-        print(score)
-        
+  
         // 保存済みデータがあればそれを保存、なければ初期化で突っ込む
+        // スワイプされたらとscore加算なので、scoreが0かどうかで初期状態を調べる
+        score = userDefaults.integer(forKey: "savescore")
         if score != 0 {
-            print("a")
             savetitle = userDefaults.array(forKey: "savetitle") as! [String]
             savepoint = userDefaults.array(forKey: "savepoint") as! [Int]
             scoreLabel.text = String(score) + " Point GET"
         }else{
             print("b")
-            savetitle = TASKDATA
-            savepoint = POINTDATA
-            scoreLabel.text = "Point KYOMU"
+            savedata_init()
         }
         
     }
+    
     /*  ---TableViewの使うことにおいてこの２つが必要--- */
     // TableViewのcellの長さを返す
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,10 +59,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // numberOfRowsInSectionのところの長さの分だけデータをセット
     // 見た目カスタムもここでしちゃお
-    // color:A6C2CE
-    // color:9C8F96
-    // color:EBC57C
-    // color:6B799E
+    // color-code:A6C2CE, 9C8F96, EBC57C, 6B799E
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel!.text = "▶︎ " + savetitle[indexPath.row]
@@ -75,7 +67,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         /* --- 見た目ここから --- */
         tableView.separatorColor = UIColor(hex: "9C8F96")
         cell.textLabel?.textColor = UIColor(hex: "6B799E")
-        
         /* --- 見た目ここまで --- */
         
         return cell
@@ -99,7 +90,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let indexPathes = [indexPath]
         tableView.deleteRows(at: indexPathes, with: .automatic)
         
-        
     }
     
     /* --- スワイプ削除機能の文字をDeleteからDoneに変更 --- */
@@ -107,8 +97,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return "Done"
     }
     
+    // 保存してあるデータ初期化
+    func savedata_init(){
+        savetitle = TASKDATA
+        savepoint = POINTDATA
+        score = 0
+        scoreLabel.text = "Point KYOMU"
+    }
+    
     @IBAction func tapReset(_ sender: Any) {
-        
+        savedata_init()
+        tableView.reloadData()
     }
     
     @IBAction func tapTweet(_ sender: Any) {

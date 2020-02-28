@@ -74,6 +74,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="scoreLabel" destination="e9A-yF-OYD" id="i7c-rZ-4hi"/>
+                        <outlet property="tableView" destination="DOt-qx-OMJ" id="2VZ-G7-x7V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
