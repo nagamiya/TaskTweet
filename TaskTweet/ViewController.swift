@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var scoreLabel: UILabel!
+    //var tweetButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: Selector(("tapTweetButton")))
+    
     
     var score: Int = 0
     let userDefaults = UserDefaults.standard
@@ -33,7 +35,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        //self.navigationItem.setRightBarButtonItems([tweetButton], animated: true)
+
+        
         score = userDefaults.integer(forKey: "savescore")
         print(score)
         
@@ -49,9 +54,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             savepoint = POINTDATA
             scoreLabel.text = "Point KYOMU"
         }
-        for st in savetitle {
-            print(st)
-        }
+        
     }
     /*  ---TableViewの使うことにおいてこの２つが必要--- */
     // TableViewのcellの長さを返す
@@ -70,8 +73,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.textLabel!.text = "▶︎ " + savetitle[indexPath.row]
         
         /* --- 見た目ここから --- */
-        tableView.separatorColor = UIColor(hex: "6B799E")
-        cell.textLabel?.textColor = UIColor(hex: "9C8F96")
+        tableView.separatorColor = UIColor(hex: "9C8F96")
+        cell.textLabel?.textColor = UIColor(hex: "6B799E")
+        
         /* --- 見た目ここまで --- */
         
         return cell
@@ -102,5 +106,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return "Done"
     }
-
+    
+    @IBAction func tapReset(_ sender: Any) {
+        
+    }
+    
+    @IBAction func tapTweet(_ sender: Any) {
+        
+    }
+    
 }
