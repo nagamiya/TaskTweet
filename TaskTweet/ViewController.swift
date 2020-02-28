@@ -12,9 +12,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    //var tweetButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: Selector(("tapTweetButton")))
-    
-    
+
     var score: Int = 0
     let userDefaults = UserDefaults.standard
     /* --- 元々のデータ --- */
@@ -23,29 +21,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 "Gmail確認",
                 "Pinterest確認",
                 "家事を１つする",
-                "開発に関すること30分以上する",
-                "AtCoderの問題１つとく"]
+                "AtCoderの問題１つとく",
+                "開発に関すること30分以上する"]
  
-    let POINTDATA : [Int] = [15, 10, 10, 10, 15, 20, 20]
+    let POINTDATA : [Int] = [15, 10, 10, 10, 15, 19, 20]
     /* --- 元々のデータここまで --- */
-    /* --- １日分 --- */
+    /* --- 実際に使うデータ --- */
     var savetitle : [String] = []
     var savepoint : [Int] = []
-    /* --- １日分 --- */
+    /* --- ここまで --- */
     
    
     override func viewDidLoad() {
         super.viewDidLoad()
   
         // 保存済みデータがあればそれを保存、なければ初期化で突っ込む
-        // スワイプされたらとscore加算なので、scoreが0かどうかで初期状態を調べる
+        // スワイプされたらscore加算なので、scoreが0かどうかで初期状態を調べる
         score = userDefaults.integer(forKey: "savescore")
         if score != 0 {
             savetitle = userDefaults.array(forKey: "savetitle") as! [String]
             savepoint = userDefaults.array(forKey: "savepoint") as! [Int]
             scoreLabel.text = String(score) + " Point GET"
         }else{
-            print("b")
             savedata_init()
         }
         
@@ -58,35 +55,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     // numberOfRowsInSectionのところの長さの分だけデータをセット
-    // 見た目カスタムもここでしちゃお
-    // color-code:A6C2CE, 9C8F96, EBC57C, 6B799E
+    // カラーコードメモ：A6C2CE, 9C8F96, EBC57C, 6B799E
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel!.text = "▶︎ " + savetitle[indexPath.row]
         
-        /* --- 見た目ここから --- */
+        /* --- 見た目カスタムここから --- */
         tableView.separatorColor = UIColor(hex: "9C8F96")
         cell.textLabel?.textColor = UIColor(hex: "6B799E")
-        /* --- 見た目ここまで --- */
+        /* --- 見た目カスタムここまで --- */
         
         return cell
     }
     /* --- TableViewの必須準備ここまで--- */
     
-    /* --- スワイプ削除のやつ --- */
+    /* --- スワイプで削除されたら --- */
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        // score加算処理
+        // score加算処理して保存
         score = score + savepoint[indexPath.row]
         scoreLabel.text = String(score) + " Point GET"
         userDefaults.set(score, forKey: "savescore")
         
-        // 実際に削除して反映させる
+        // 削除されたcellの値を使用データに反映させる
         savetitle.remove(at: indexPath.row)
         savepoint.remove(at: indexPath.row)
         userDefaults.set(savetitle, forKey: "savetitle")
         userDefaults.set(savepoint, forKey: "savepoint")
         
-        //task.remove(at: indexPath.row)
         let indexPathes = [indexPath]
         tableView.deleteRows(at: indexPathes, with: .automatic)
         
@@ -97,7 +92,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return "Done"
     }
     
-    // 保存してあるデータ初期化
+    // データ初期化用
     func savedata_init(){
         savetitle = TASKDATA
         savepoint = POINTDATA
@@ -111,7 +106,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func tapTweet(_ sender: Any) {
+        let tweetSub = tweetComment() + "\n\n...Tweet for TaskTweetApp..."
+        let tweet = "今日のながみやの優等生力は..." + String(score) + "点です！\n" + tweetSub
         
+        let encodedText = tweet.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        if let encodedText = encodedText,
+            let url = URL(string: "https://twitter.com/intent/tweet?text=\(encodedText)") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
+    func tweetComment() -> String {
+        if score >= 99 {
+            return "👏完璧！すごい！！天才！えらい！！！！👏"
+        }else if score > 75{
+            return "✨流石優等生！！あと少しで天才！✨"
+        }else if score > 50{
+            return "😎おつかれさま！！今日も一日乗り切った！😎"
+        }else if score > 25 {
+            return "🙃また明日も頑張ろう🙃"
+        }else{
+            return "🐰きょむうさにしてやんぞ🐰"
+        }
     }
     
 }
