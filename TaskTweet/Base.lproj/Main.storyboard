@@ -18,9 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DOt-qx-OMJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DOt-qx-OMJ">
                                 <rect key="frame" x="0.0" y="64" width="375" height="491"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="1mx-Wh-n6j">
@@ -37,15 +36,24 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="goJ-0D-cNA"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9A-yF-OYD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9A-yF-OYD">
                                 <rect key="frame" x="0.0" y="554" width="375" height="113"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                 <color key="textColor" red="0.41960784313725491" green="0.47450980392156861" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.65098039215686276" green="0.76078431372549016" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="DOt-qx-OMJ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-52" id="Aut-jz-MPb"/>
+                            <constraint firstItem="e9A-yF-OYD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="438" id="K8k-lg-xaa"/>
+                            <constraint firstItem="DOt-qx-OMJ" firstAttribute="trailing" secondItem="e9A-yF-OYD" secondAttribute="trailing" id="aa3-2L-k8N"/>
+                            <constraint firstItem="DOt-qx-OMJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="edH-HA-Nao"/>
+                            <constraint firstItem="DOt-qx-OMJ" firstAttribute="leading" secondItem="e9A-yF-OYD" secondAttribute="leading" id="nWp-XY-Bwe"/>
+                            <constraint firstItem="e9A-yF-OYD" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="nbw-VZ-OAn"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="DOt-qx-OMJ" secondAttribute="bottom" constant="112" id="pxI-RS-Ftp"/>
+                            <constraint firstAttribute="trailing" secondItem="DOt-qx-OMJ" secondAttribute="trailing" id="ye5-Q1-Qp8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="TaskTweet" id="4gf-fU-ae9"/>

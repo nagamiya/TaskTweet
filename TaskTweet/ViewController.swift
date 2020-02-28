@@ -13,23 +13,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var scoreLabel: UILabel!
     
     var score: Int = 0
-    
-    /*
-     title: やること
-     point: 完了したらゲットできるポイント
-     done: 実行したらtrue, してなければfalse
-    */
-    class TaskInfo{
-        var title: String
-        var point: Int
-        
-        init(title: String, point: Int) {
-            self.title = title
-            self.point = point
-        }
-    }
-    
-    var task : [TaskInfo] = []
+    let userDefaults = UserDefaults.standard
+    /* --- 元々のデータ --- */
     let TASKDATA : [String] = ["7:30に起きる",
                 "LINE確認",
                 "Gmail確認",
@@ -39,25 +24,39 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 "AtCoderの問題１つとく"]
  
     let POINTDATA : [Int] = [15, 10, 10, 10, 15, 20, 20]
+    /* --- 元々のデータここまで --- */
+    /* --- １日分 --- */
+    var savetitle : [String] = []
+    var savepoint : [Int] = []
+    /* --- １日分 --- */
     
    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        scoreLabel.text = "Point KYOMU"
+        score = userDefaults.integer(forKey: "savescore")
+        print(score)
         
-        // インスタンス生成して突っ込んでいる
-        for i in 0 ..< TASKDATA.count {
-            let item = TaskInfo(title: TASKDATA[i], point: POINTDATA[i])
-            task.append(item)
+        // 保存済みデータがあればそれを保存、なければ初期化で突っ込む
+        if score != 0 {
+            print("a")
+            savetitle = userDefaults.array(forKey: "savetitle") as! [String]
+            savepoint = userDefaults.array(forKey: "savepoint") as! [Int]
+            scoreLabel.text = String(score) + " Point GET"
+        }else{
+            print("b")
+            savetitle = TASKDATA
+            savepoint = POINTDATA
+            scoreLabel.text = "Point KYOMU"
         }
-        
+        for st in savetitle {
+            print(st)
+        }
     }
-    
     /*  ---TableViewの使うことにおいてこの２つが必要--- */
     // TableViewのcellの長さを返す
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return task.count
+        return savetitle.count
     }
     
     // numberOfRowsInSectionのところの長さの分だけデータをセット
@@ -68,7 +67,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // color:6B799E
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel!.text = "▶︎ " + task[indexPath.row].title
+        cell.textLabel!.text = "▶︎ " + savetitle[indexPath.row]
         
         /* --- 見た目ここから --- */
         tableView.separatorColor = UIColor(hex: "6B799E")
@@ -82,14 +81,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     /* --- スワイプ削除のやつ --- */
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         // score加算処理
-        let item = task[indexPath.row]
-        score = score + item.point
+        score = score + savepoint[indexPath.row]
         scoreLabel.text = String(score) + " Point GET"
+        userDefaults.set(score, forKey: "savescore")
         
-        // 実際に削除すして反映させる
-        task.remove(at: indexPath.row)
+        // 実際に削除して反映させる
+        savetitle.remove(at: indexPath.row)
+        savepoint.remove(at: indexPath.row)
+        userDefaults.set(savetitle, forKey: "savetitle")
+        userDefaults.set(savepoint, forKey: "savepoint")
+        
+        //task.remove(at: indexPath.row)
         let indexPathes = [indexPath]
         tableView.deleteRows(at: indexPathes, with: .automatic)
+        
+        
     }
     
     /* --- スワイプ削除機能の文字をDeleteからDoneに変更 --- */
@@ -98,4 +104,3 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
 }
-
