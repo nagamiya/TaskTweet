@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B146D23D240983690031437F /* TASKTWEET180.png in Resources */ = {isa = PBXBuildFile; fileRef = B146D236240983690031437F /* TASKTWEET180.png */; };
+		B146D23E240983690031437F /* TASKTWEET58.png in Resources */ = {isa = PBXBuildFile; fileRef = B146D237240983690031437F /* TASKTWEET58.png */; };
+		B146D23F240983690031437F /* TASKTWEET120.png in Resources */ = {isa = PBXBuildFile; fileRef = B146D238240983690031437F /* TASKTWEET120.png */; };
+		B146D240240983690031437F /* TASKTWEET60.png in Resources */ = {isa = PBXBuildFile; fileRef = B146D239240983690031437F /* TASKTWEET60.png */; };
+		B146D241240983690031437F /* TASKTWEET87.png in Resources */ = {isa = PBXBuildFile; fileRef = B146D23A240983690031437F /* TASKTWEET87.png */; };
+		B146D242240983690031437F /* TASKTWEET80.png in Resources */ = {isa = PBXBuildFile; fileRef = B146D23B240983690031437F /* TASKTWEET80.png */; };
+		B146D243240983690031437F /* TASKTWEET40.png in Resources */ = {isa = PBXBuildFile; fileRef = B146D23C240983690031437F /* TASKTWEET40.png */; };
 		B1DAC4302407C9CE0062FDBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DAC42F2407C9CE0062FDBF /* AppDelegate.swift */; };
 		B1DAC4322407C9CE0062FDBF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DAC4312407C9CE0062FDBF /* ViewController.swift */; };
 		B1DAC4352407C9CE0062FDBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1DAC4332407C9CE0062FDBF /* Main.storyboard */; };
@@ -35,6 +42,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B146D236240983690031437F /* TASKTWEET180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TASKTWEET180.png; sourceTree = "<group>"; };
+		B146D237240983690031437F /* TASKTWEET58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TASKTWEET58.png; sourceTree = "<group>"; };
+		B146D238240983690031437F /* TASKTWEET120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TASKTWEET120.png; sourceTree = "<group>"; };
+		B146D239240983690031437F /* TASKTWEET60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TASKTWEET60.png; sourceTree = "<group>"; };
+		B146D23A240983690031437F /* TASKTWEET87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TASKTWEET87.png; sourceTree = "<group>"; };
+		B146D23B240983690031437F /* TASKTWEET80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TASKTWEET80.png; sourceTree = "<group>"; };
+		B146D23C240983690031437F /* TASKTWEET40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TASKTWEET40.png; sourceTree = "<group>"; };
 		B1DAC42C2407C9CE0062FDBF /* TaskTweet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskTweet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1DAC42F2407C9CE0062FDBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1DAC4312407C9CE0062FDBF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +90,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B146D235240983690031437F /* appicons */ = {
+			isa = PBXGroup;
+			children = (
+				B146D236240983690031437F /* TASKTWEET180.png */,
+				B146D237240983690031437F /* TASKTWEET58.png */,
+				B146D238240983690031437F /* TASKTWEET120.png */,
+				B146D239240983690031437F /* TASKTWEET60.png */,
+				B146D23A240983690031437F /* TASKTWEET87.png */,
+				B146D23B240983690031437F /* TASKTWEET80.png */,
+				B146D23C240983690031437F /* TASKTWEET40.png */,
+			);
+			path = appicons;
+			sourceTree = "<group>";
+		};
 		B1DAC4232407C9CE0062FDBF = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +127,7 @@
 		B1DAC42E2407C9CE0062FDBF /* TaskTweet */ = {
 			isa = PBXGroup;
 			children = (
+				B146D235240983690031437F /* appicons */,
 				B1DAC42F2407C9CE0062FDBF /* AppDelegate.swift */,
 				B1DAC4312407C9CE0062FDBF /* ViewController.swift */,
 				B1DAC45D2407FABC0062FDBF /* UIColorHex.swift */,
@@ -232,7 +261,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B146D23D240983690031437F /* TASKTWEET180.png in Resources */,
 				B1DAC43A2407C9D10062FDBF /* LaunchScreen.storyboard in Resources */,
+				B146D243240983690031437F /* TASKTWEET40.png in Resources */,
+				B146D242240983690031437F /* TASKTWEET80.png in Resources */,
+				B146D23F240983690031437F /* TASKTWEET120.png in Resources */,
+				B146D23E240983690031437F /* TASKTWEET58.png in Resources */,
+				B146D240240983690031437F /* TASKTWEET60.png in Resources */,
+				B146D241240983690031437F /* TASKTWEET87.png in Resources */,
 				B1DAC4372407C9D10062FDBF /* Assets.xcassets in Resources */,
 				B1DAC4352407C9CE0062FDBF /* Main.storyboard in Resources */,
 			);
