@@ -103,6 +103,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func tapReset(_ sender: Any) {
         savedata_init()
         tableView.reloadData()
+        userDefaults.set(savetitle, forKey: "savetitle")
+        userDefaults.set(savepoint, forKey: "savepoint")
+        userDefaults.set(score, forKey: "savescore")
     }
     
     @IBAction func tapTweet(_ sender: Any) {
