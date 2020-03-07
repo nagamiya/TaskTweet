@@ -98,14 +98,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         savepoint = POINTDATA
         score = 0
         scoreLabel.text = "Point KYOMU"
-    }
-    
-    @IBAction func tapReset(_ sender: Any) {
-        savedata_init()
         tableView.reloadData()
         userDefaults.set(savetitle, forKey: "savetitle")
         userDefaults.set(savepoint, forKey: "savepoint")
         userDefaults.set(score, forKey: "savescore")
+        
+    }
+    
+    @IBAction func tapReset(_ sender: Any) {
+        savedata_init()
     }
     
     @IBAction func tapTweet(_ sender: Any) {
@@ -115,8 +116,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let encodedText = tweet.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         if let encodedText = encodedText,
             let url = URL(string: "https://twitter.com/intent/tweet?text=\(encodedText)") {
+            savedata_init()
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
+        
     }
     
     func tweetComment() -> String {
