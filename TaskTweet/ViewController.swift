@@ -16,13 +16,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var score: Int = 0
     let userDefaults = UserDefaults.standard
     /* --- 元々のデータ --- */
-    let TASKDATA : [String] = ["7:30に起きる",
+    let TASKDATA : [String] = [
+                "7:30に起きる",
                 "LINE確認",
                 "Gmail確認",
                 "Pinterest確認",
                 "家事を１つする",
-                "AtCoderの問題１つとく",
-                "開発に関すること30分以上する"]
+                "検査系の勉強２時間",
+                "プログラミング30分以上"]
  
     let POINTDATA : [Int] = [15, 10, 10, 10, 15, 19, 20]
     /* --- 元々のデータここまで --- */
