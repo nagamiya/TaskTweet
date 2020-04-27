@@ -13,10 +13,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
-    var score: Int = 0
+    var currentScore: Int = 0
     let userDefaults = UserDefaults.standard
     /* --- 元々のデータ --- */
-    let TASKDATA : [String] = [
+    let taskData : [String] = [
                 "7:30に起きる",
                 "LINE確認",
                 "Gmail確認",
@@ -25,11 +25,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 "検査系の勉強２時間",
                 "プログラミング30分以上"]
  
-    let POINTDATA : [Int] = [15, 10, 10, 10, 15, 19, 20]
+    let pointData : [Int] = [15, 10, 10, 10, 15, 19, 20]
     /* --- 元々のデータここまで --- */
     /* --- 実際に使うデータ --- */
-    var savetitle : [String] = []
-    var savepoint : [Int] = []
+    var saveTitle : [String] = []
+    var savePoint : [Int] = []
     /* --- ここまで --- */
     
    
@@ -38,11 +38,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   
         // 保存済みデータがあればそれを保存、なければ初期化で突っ込む
         // スワイプされたらscore加算なので、scoreが0かどうかで初期状態を調べる
-        score = userDefaults.integer(forKey: "savescore")
-        if score != 0 {
-            savetitle = userDefaults.array(forKey: "savetitle") as! [String]
-            savepoint = userDefaults.array(forKey: "savepoint") as! [Int]
-            scoreLabel.text = String(score) + " Point GET"
+        currentScore = userDefaults.integer(forKey: "savescore")
+        if currentScore != 0 {
+            saveTitle = userDefaults.array(forKey: "savetitle") as! [String]
+            savePoint = userDefaults.array(forKey: "savepoint") as! [Int]
+            scoreLabel.text = String(currentScore) + " Point GET"
         }else{
             savedata_init()
         }
@@ -52,14 +52,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     /*  ---TableViewの使うことにおいてこの２つが必要--- */
     // TableViewのcellの長さを返す
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return savetitle.count
+        return saveTitle.count
     }
     
     // numberOfRowsInSectionのところの長さの分だけデータをセット
     // カラーコードメモ：A6C2CE, 9C8F96, EBC57C, 6B799E
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel!.text = "▶︎ " + savetitle[indexPath.row]
+        cell.textLabel!.text = "▶︎ " + saveTitle[indexPath.row]
         
         /* --- 見た目カスタムここから --- */
         tableView.separatorColor = UIColor(hex: "9C8F96")
@@ -73,15 +73,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     /* --- スワイプで削除されたら --- */
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         // score加算処理して保存
-        score = score + savepoint[indexPath.row]
-        scoreLabel.text = String(score) + " Point GET"
-        userDefaults.set(score, forKey: "savescore")
+        currentScore = currentScore + savePoint[indexPath.row]
+        scoreLabel.text = String(currentScore) + " Point GET"
+        userDefaults.set(currentScore, forKey: "savescore")
         
         // 削除されたcellの値を使用データに反映させる
-        savetitle.remove(at: indexPath.row)
-        savepoint.remove(at: indexPath.row)
-        userDefaults.set(savetitle, forKey: "savetitle")
-        userDefaults.set(savepoint, forKey: "savepoint")
+        saveTitle.remove(at: indexPath.row)
+        savePoint.remove(at: indexPath.row)
+        userDefaults.set(saveTitle, forKey: "savetitle")
+        userDefaults.set(savePoint, forKey: "savepoint")
         
         let indexPathes = [indexPath]
         tableView.deleteRows(at: indexPathes, with: .automatic)
@@ -95,14 +95,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // データ初期化用
     func savedata_init(){
-        savetitle = TASKDATA
-        savepoint = POINTDATA
-        score = 0
+        saveTitle = taskData
+        savePoint = pointData
+        currentScore = 0
         scoreLabel.text = "Point KYOMU"
         tableView.reloadData()
-        userDefaults.set(savetitle, forKey: "savetitle")
-        userDefaults.set(savepoint, forKey: "savepoint")
-        userDefaults.set(score, forKey: "savescore")
+        userDefaults.set(saveTitle, forKey: "savetitle")
+        userDefaults.set(savePoint, forKey: "savepoint")
+        userDefaults.set(currentScore, forKey: "savescore")
         
     }
     
@@ -112,7 +112,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func tapTweet(_ sender: Any) {
         let tweetSub = tweetComment() + "\n\n...Tweet for TaskTweetApp..."
-        let tweet = "今日のながみやの優等生力は..." + String(score) + "点です！\n" + tweetSub
+        let tweet = "今日のながみやの優等生力は..." + String(currentScore) + "点です！\n" + tweetSub
         
         let encodedText = tweet.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         if let encodedText = encodedText,
@@ -124,13 +124,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tweetComment() -> String {
-        if score >= 99 {
+        if currentScore >= 99 {
             return "👏完璧！すごい！！天才！えらい！！！！👏"
-        }else if score > 75{
+        }else if currentScore > 75{
             return "✨流石優等生！！あと少しで天才！✨"
-        }else if score > 50{
+        }else if currentScore > 50{
             return "😎おつかれさま！！今日も一日乗り切った！😎"
-        }else if score > 25 {
+        }else if currentScore > 25 {
             return "🙃また明日も頑張ろう🙃"
         }else{
             return "🐰きょむうさにしてやんぞ🐰"
